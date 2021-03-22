@@ -98,15 +98,16 @@ router.delete('/:id', (req, res) => {
     }
   })
   .then(dbCategoryData => {
-    if (!dbCategoryData[0]) {
-      res.status(404).json({ message: 'No user found with this id'});
-      return;
+    if(!dbCategoryData) {
+        res.status(404).json({ message: 'No post found with this id'});
+        return;
     }
-  res.json(dbCategoryData)})
+    res.json(dbCategoryData);
+  })
   .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
+      console.log(err);
+      res.status(500).json(err);
+  })
 });
 
 module.exports = router ;
